@@ -1,0 +1,21 @@
+# Editor temporary/working/backup files #
+#########################################
+.#*
+[#]*#
+*~
+*$
+*.bak
+*.diff
+*.org
+.project
+*.rej
+.settings/
+.*.sw[nop]
+.sw[nop]
+*.tmp
+*.coverage.*
+bkzep.egg-info
+build
+.idea
+dist
+__pycache__
