@@ -17,7 +17,17 @@
 
 
 import bokeh
-from bokeh.embed import notebook_div, server_document
+
+from bokeh.embed import server_document
+
+_isAfterBokeh1210 = False
+
+try:
+    from bokeh.embed import notebook_div
+except ImportError:
+    from bokeh.embed import notebook_content
+    _isAfterBokeh1210 = True
+
 
 import logging
 logger = logging.getLogger(__name__)
@@ -25,11 +35,23 @@ import uuid
 
 
 
+
 def _show_zeppelin_doc_with_state(obj, state, notebook_handle):
     if notebook_handle:
         raise ValueError("Zeppelin doesn't support notebook_handle.")
-    print("%html " + notebook_div(obj))
+    if _isAfterBokeh1210:
+        (script, div, cell_doc) = notebook_content(obj)
+        print("%html " + div)
+        print('%html ' + '<script type="text/javascript">' + script + "</script>")
+    else:
+        print("%html " + notebook_div(obj))
+
     return None
+
+def _origin_url(url):
+    if url.startswith("http"):
+        url = url.split("//")[1]
+    return url
 
 def _show_zeppelin_app_with_state(app, state, notebook_url):
     logging.basicConfig()
@@ -39,7 +61,11 @@ def _show_zeppelin_app_with_state(app, state, notebook_url):
     server = Server({"/": app}, io_loop=loop, port=0,  allow_websocket_origin=[notebook_url])
 
     server_id = uuid.uuid4().hex
-    bokeh.io._state.uuid_to_server[server_id] = server
+    if _isAfterBokeh1210:
+        from bokeh.io.state import curstate
+        curstate().uuid_to_server[server_id] = server
+    else:
+        bokeh.io._state.uuid_to_server[server_id] = server
 
     server.start()
     url = 'http://%s:%d%s' % (notebook_url.split(':')[0], server.port, "/")
