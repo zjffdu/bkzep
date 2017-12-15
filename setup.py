@@ -8,7 +8,7 @@ REQUIRES = [
 
 setup(name='bkzep',
       packages=['bkzep'],
-      version='0.4.0',
+      version='0.5.0',
       description='Python package for using bokeh in Apache Zeppelin Notebook',
       long_description=long_description,
       install_requires=REQUIRES,

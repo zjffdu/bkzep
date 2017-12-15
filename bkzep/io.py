@@ -25,7 +25,7 @@ _isAfterBokeh1210 = False
 try:
     from bokeh.embed import notebook_div
 except ImportError:
-    from bokeh.embed import notebook_content
+    from bokeh.embed.notebook import notebook_content
     _isAfterBokeh1210 = True
 
 

@@ -106,3 +106,9 @@ doc = app.create_document()
 show(app, notebook_url='localhost:8080')
 
 ```
+
+## How to publish
+
+```
+python setup.py sdist upload -r pypi
+```
