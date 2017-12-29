@@ -1,0 +1,41 @@
+language: python
+cache:
+  directories:
+  - "$HOME/.cache/pip"
+
+matrix:
+  include:
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '2.7'
+    env: BOKEH_VER="0.12.7"
+
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '2.7'
+    env: BOKEH_VER="0.12.9"
+
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '2.7'
+    env: BOKEH_VER="0.12.10"
+
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '2.7'
+    env: BOKEH_VER="0.12.11"
+
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '2.7'
+    env: BOKEH_VER="0.12.13"
+
+install:
+  - "./.travis/install.sh"
+script:
+  - "./.travis/run.sh"
