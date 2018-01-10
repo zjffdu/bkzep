@@ -1,5 +1,6 @@
 `bkzep` is Python Package for using Bokeh in Apache Zeppelin Notebook.
 
+[![Build Status](https://travis-ci.org/zjffdu/bkzep.svg?branch=master)](https://travis-ci.org/zjffdu/bkzep)
 
 ## Prerequisites
 * bokeh >= 0.12.7
