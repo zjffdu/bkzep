@@ -53,6 +53,12 @@ matrix:
     python: '2.7'
     env: BOKEH_VER="0.12.16"
 
+  - os: linux
+    dist: trusty
+    sudo: false
+    python: '2.7'
+    env: BOKEH_VER="0.13.0"
+
 install:
   - "./.travis/install.sh"
 script:
