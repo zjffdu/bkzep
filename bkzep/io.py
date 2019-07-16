@@ -120,7 +120,7 @@ def _load_notebook_html(resources=None, verbose=False, hide_banner=False,
         hide_banner   = hide_banner,
     )
 
-    custom_models_js = bundle_all_models()
+    custom_models_js = bundle_all_models() or ""
 
     js = AUTOLOAD_NB_JS.render(
         elementid = '' if hide_banner else element_id,
