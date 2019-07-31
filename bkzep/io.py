@@ -159,6 +159,6 @@ def load_notebook(resources=None, verbose=False, hide_banner=False, load_timeout
 
     '''
     lab_html, lab_js = _load_notebook_html(resources, verbose, hide_banner, load_timeout)
-    print('%html ' + lab_html)
-    print('%html ' + '<script type="text/javascript">' + lab_js + "</script>")
+    print('\n%html ' + lab_html)
+    print('\n%html ' + '<script type="text/javascript">' + lab_js + "</script>")
 
